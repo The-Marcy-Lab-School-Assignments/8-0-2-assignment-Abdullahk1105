@@ -3,17 +3,21 @@ import GifContainer from './components/GifContainer'
 import GifSearch from './components/GifSearch'
 import { handleFetch } from './utils';
 import { useState, useEffect } from 'react';
-import { API_KEY } from './config';
+// import { API_KEY } from './config';
 
-const URL = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=25&offset=0&rating=g&bundle=messaging_non_clips`
+// const URL = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=25&offset=0&rating=g&bundle=messaging_non_clips`
 
 function App() {
   const [gifs, setGifs] = useState([]);
+
+
+  
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const doFetch = async () => {
-      const [data, error] = await handleFetch(URL);
+      const API_URL = `/api/gifs`;
+      const [data, error] = await handleFetch(API_URL);
       if (error) setErrorMessage(error.message);
       if (data) setGifs(data.data);
     }
